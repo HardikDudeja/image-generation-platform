@@ -1,4 +1,5 @@
 import { TrainModelSchema } from "common/types";
+import { prismaClient } from "db";
 import express from "express";
 
 const PORT = process.env.PORT || 3000;

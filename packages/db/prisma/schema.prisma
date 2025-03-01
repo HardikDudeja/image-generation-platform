@@ -43,38 +43,51 @@ enum EyeColorEnum {
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Model {
-  id          String   @id @default(uuid())
-  name        String
-  type        ModelTypeEnum
-  age         Int
-  ethnicity   EthnicityEnum
-  eyeColor    EyeColorEnum
-  bald        Boolean
+  id              String          @id @default(uuid())
+  name            String
+  type            ModelTypeEnum
+  age             Int
+  ethnicity       EthnicityEnum
+  eyeColor        EyeColorEnum
+  bald            Boolean
+  trainingImages  TrainingImages[]
+  outputImages    OutputImages[]
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
 }
 
 model TrainingImages {
   id        String   @id @default(uuid())
   imageUrl  String
   modelId   String
+  model     Model    @relation(fields: [modelId], references: [id])
 }
 
 model OutputImages {
   id        String   @id @default(uuid())
   imageUrl  String
+  userId    String
   modelId   String
+  model     Model    @relation(fields: [modelId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Packs {
   id          String   @id @default(uuid())
   name        String
   description String
+  prompts     PackPrompts[]
 }
 
 model PackPrompts {
   id        String   @id @default(uuid())
   prompt    String
   packId    String
+  pack      Packs    @relation(fields: [packId], references: [id])
 }
