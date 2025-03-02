@@ -9,6 +9,7 @@ app.use(express.json());
 
 app.post("/ai/training", async (req, res) => {
   const parsedBody = TrainModelSchema.safeParse(req.body);
+
   if (!parsedBody.success) {
     res.status(400).json({
       error: "Invalid request body",
@@ -16,6 +17,7 @@ app.post("/ai/training", async (req, res) => {
     });
     return;
   }
+
   const data = await prismaClient.model.create({
     data: {
       name: parsedBody.data.name,
