@@ -14,9 +14,9 @@ datasource db {
 }
 
 enum ModelTypeEnum {
-  MAN
-  WOMAN
-  OTHER
+  Man
+  Woman
+  Other
 }
 
 enum EthnicityEnum {
@@ -24,9 +24,9 @@ enum EthnicityEnum {
   Black
   Hispanic
   Indian
-  Middle_Eastern
-  NativeAmerican
-  PacificIslander
+  Middle_Eastern   
+  Native_American   
+  Pacific_Islander  
   White
   Other
 }

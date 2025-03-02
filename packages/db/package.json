@@ -2,6 +2,12 @@
   "name": "db",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "prisma:generate": "prisma generate",
+    "build": "bun prisma generate && bun build",
+    "dev": "bun prisma generate && bun run index.ts",
+    "postinstall": "bun prisma generate"
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "prisma": "^6.4.1"
@@ -11,5 +17,8 @@
   },
   "dependencies": {
     "@prisma/client": "^6.4.1"
+  },
+  "exports": {
+    ".": "./index.ts"
   }
 }

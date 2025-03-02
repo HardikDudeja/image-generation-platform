@@ -12,7 +12,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "common": "workspace:*",
-    "db": "workspace:*"
+    "common": "*",
+    "db": "*"
   }
 }

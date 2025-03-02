@@ -12,7 +12,8 @@
     "apps/backend": {
       "name": "backend",
       "dependencies": {
-        "common": "workspace:*",
+        "common": "*",
+        "db": "*",
       },
       "devDependencies": {
         "@types/bun": "latest",

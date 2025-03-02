@@ -16,7 +16,7 @@ app.post("/ai/training", async (req, res) => {
     });
     return;
   }
-  await prismaClient.model.create({
+  const data = await prismaClient.model.create({
     data: {
       name: parsedBody.data.name,
       type: parsedBody.data.type,
@@ -25,6 +25,10 @@ app.post("/ai/training", async (req, res) => {
       eyeColor: parsedBody.data.eyeColor,
       bald: parsedBody.data.bald,
     },
+  });
+  res.json({
+    message: "Model created",
+    data: data,
   });
 });
 
