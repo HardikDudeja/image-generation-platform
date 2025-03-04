@@ -47,6 +47,7 @@ model User {
   updatedAt DateTime @updatedAt
 }
 
+// FIXME: link user id with user model - this is critical for proper user-model association
 model Model {
   id              String          @id @default(uuid())
   name            String
@@ -59,6 +60,7 @@ model Model {
   outputImages    OutputImages[]
   createdAt       DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
+  userId          String
 }
 
 model TrainingImages {
