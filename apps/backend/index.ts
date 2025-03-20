@@ -21,7 +21,7 @@ app.post("/ai/training", async (req, res) => {
     const data = await prismaClient.model.create({
       data: { name, type, age, ethnicity, eyeColor, bald },
     });
-    res.status(200).json("Record created");
+    res.status(200).json({ data: data, message: "Record created" });
   } catch (error) {
     console.error("Error creating record:", error);
     res.status(500).json({
