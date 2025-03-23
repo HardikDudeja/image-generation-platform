@@ -17,9 +17,10 @@ app.post("/ai/training", async (req, res) => {
     return;
   }
   try {
-    const { name, type, age, ethnicity, eyeColor, bald } = parsedBody.data;
+    const { name, type, age, ethnicity, eyeColor, bald, userId } =
+      parsedBody.data;
     const data = await prismaClient.model.create({
-      data: { name, type, age, ethnicity, eyeColor, bald },
+      data: { name, type, age, ethnicity, eyeColor, bald, userId },
     });
     res.status(200).json({ data: data, message: "Record created" });
   } catch (error) {

@@ -26,6 +26,7 @@ export const TrainModelSchema = z.object({
   ]),
   bald: z.boolean(),
   images: z.array(z.string()).min(1),
+  userId: z.string(),
 });
 
 export const GenerateImageSchema = z.object({
