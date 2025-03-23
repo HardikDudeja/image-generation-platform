@@ -32,6 +32,7 @@ enum EthnicityEnum {
 }
 
 enum EyeColorEnum {
+  Black
   Brown
   Blue
   Green
@@ -60,7 +61,7 @@ model Model {
   outputImages    OutputImages[]
   createdAt       DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
-  userId          String
+  userId          String          @default("default-user-id")
 }
 
 model TrainingImages {

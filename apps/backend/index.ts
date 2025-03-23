@@ -31,6 +31,21 @@ app.post("/ai/training", async (req, res) => {
   }
 });
 
+app.delete("/ai/models", async (req, res) => {
+  try {
+    await prismaClient.model.deleteMany();
+    res.status(200).json({
+      success: true,
+      message: "All models deleted",
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error,
+    });
+  }
+});
+
 app.post("/ai/generate", (req, res) => {});
 
 app.post("/pack/generate", (req, res) => {});
