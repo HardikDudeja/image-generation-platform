@@ -41,6 +41,12 @@ enum EyeColorEnum {
   Other
 }
 
+enum OutputImageStatusEnum {
+  Pending
+  Generated
+  Failed
+}
+
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
@@ -72,13 +78,14 @@ model TrainingImages {
 }
 
 model OutputImages {
-  id        String   @id @default(uuid())
-  imageUrl  String
-  userId    String
+  id        String                 @id @default(uuid())
+  imageUrl  String                 @default("")
   modelId   String
-  model     Model    @relation(fields: [modelId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  prompt    String
+  status    OutputImageStatusEnum  @default(Pending)
+  model     Model                  @relation(fields: [modelId], references: [id])
+  createdAt DateTime               @default(now())
+  updatedAt DateTime               @updatedAt
 }
 
 model Packs {

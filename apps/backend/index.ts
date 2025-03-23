@@ -1,4 +1,4 @@
-import { TrainModelSchema } from "common/types";
+import { GenerateImageSchema, TrainModelSchema } from "common/types";
 import { prismaClient } from "db";
 import express from "express";
 
@@ -47,7 +47,28 @@ app.delete("/ai/models", async (req, res) => {
   }
 });
 
-app.post("/ai/generate", (req, res) => {});
+app.post("/ai/generate", async (req, res) => {
+  try {
+    const parsedBody = GenerateImageSchema.safeParse(req.body);
+    if (!parsedBody.success) {
+      return res.status(400).json({ error: "Invalid request body" });
+    }
+
+    const { prompt, modelId } = parsedBody.data;
+    const data = await prismaClient.outputImages.create({
+      data: {
+        prompt,
+        modelId,
+        imageUrl: "",
+      },
+    });
+    res
+      .status(200)
+      .json({ imageId: data.id, message: "Generation request created" });
+  } catch (error) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
 
 app.post("/pack/generate", (req, res) => {});
 
